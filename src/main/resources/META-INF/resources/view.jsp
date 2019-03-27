@@ -15,32 +15,26 @@ taglib uri="http://liferay.com/tld/ui" prefix="liferay-ui" %>
 
 <style>
 form > div[class=contenedor] > div > label[class=control-label]{
-display: none;
+	display: none;
 }
 form > div[class=contenedor] > div > input{
-width: 100% !important;
-border-radius: inherit;
-box-shadow: none !important;
-    border: 0;
-    outline: 0;
-    background: transparent;
-    border-bottom: 1px solid black;
+	width: 70% !important;
+	border-radius: inherit;
+	box-shadow: none !important;
+	border: 0;
+	outline: 0;
+	background: transparent;
+	border-bottom: 1px solid black;
 }
 form > div[class=contenedor] > div > textarea{
-width: 100%;
+	width: 100%;
 }
-
-
-
-
-
-
 </style>
 
 <div class="container">
 	<div class="row">
 		<div class="col-md-6">
-		<img class="img-responsive img-circle" style="height: 40rem;padding: 30px 0;;margin: auto;" alt="" src='<%=request.getContextPath() +"/img/call-center-multiva2.jpg"%>'>
+		<img class="img-responsive img-circle" style="height: 60rem;padding: 90px 0;margin: auto;" alt="" src='<%=request.getContextPath() +"/img/call-center-multiva2.jpg"%>'>
 		</div>
 		<div class="col-md-6">
 		<h3 class="subtitulo" style="margin-bottom: 4rem;">Contacto</h3>

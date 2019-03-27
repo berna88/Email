@@ -19,7 +19,7 @@ import javax.portlet.Portlet;
 import org.osgi.service.component.annotations.Component;
 
 /**
- * @author liferay
+ * @author Bernardo Hernández Ramírez
  */
 @Component(
 	immediate = true,
@@ -36,37 +36,63 @@ import org.osgi.service.component.annotations.Component;
 	service = Portlet.class
 )
 public class EmailPortlet extends MVCPortlet {
+	
+	// Log permite un mayor detalle en la localizacion de los errores
 	private static final Log log = LogFactoryUtil.getLog(EmailPortlet.class);
+	
+	/**
+	 * @param request
+	 * @param response
+	 */
 	public void sendMail( ActionRequest request,  ActionResponse response){
 		try {
 			log.info("Recuperacion de datos de formulario");
-			String to = "bhernandez@consistent.com.mx";
-			String from = (!ParamUtil.getString(request, "Correo").isEmpty())?ParamUtil.getString(request, "Correo"):"test@liferay.com";
+			String para = "bhernandez@consistent.com.mx";
+			String de = (!ParamUtil.getString(request, "Correo").isEmpty())?ParamUtil.getString(request, "Correo"):"test@liferay.com";
 			String nombre = (!ParamUtil.getString(request, "Nombre").isEmpty())?ParamUtil.getString(request, "Nombre"):"Sin nombre";
-			String subject = "Solicitud de producto";
-			String body = (!ParamUtil.getString(request, "Comentario").isEmpty())?ParamUtil.getString(request, "Comentario"):"test";
+			String asunto = "Solicitud de producto";
+			String contenido = (!ParamUtil.getString(request, "Comentario").isEmpty())?ParamUtil.getString(request, "Comentario"):"test";
 			String producto = (!ParamUtil.getString(request, "producto").isEmpty())?ParamUtil.getString(request, "producto"):"Sin producto";
+			mail(para, de, nombre, asunto, contenido, producto);
+		}catch (NullPointerException e) {
+			// TODO: handle exception
 			
-			InternetAddress fromAddress = new InternetAddress(from);
-			InternetAddress toAddress = new InternetAddress(to);
+		}
+	}// Fin de metodo sendMail
+	
+	/**
+	 * @param para
+	 * @param de
+	 * @param nombre
+	 * @param asunto
+	 * @param contenido
+	 * @param producto
+	 */
+	public void mail(String para, String de, String nombre, String asunto, String contenido, String producto){
+		try{
+			InternetAddress fromAddress = new InternetAddress(de);
+			InternetAddress toAddress = new InternetAddress(para);
 			
 			MailMessage mailMessage = new  MailMessage();
 			mailMessage.setFrom(fromAddress);
 			mailMessage.setTo(toAddress);
-			mailMessage.setSubject(subject);
+			mailMessage.setSubject(asunto);
 			mailMessage.setHTMLFormat(true);
 			mailMessage.setBody(""
 					+ "<h4>Mi nombre es: "+nombre+"<h4>"
-					+ "<h5>Mi correo es: "+from+"<h5>"
+					+ "<h5>Mi correo es: "+de+"<h5>"
 					+ "<h5>Mi producto es: "+producto+"<h5>"
-					+ "<p>Mis comentarios son: "+body+"<p>");
+					+ "<p>Mis comentarios son: "+contenido+"<p>");
 			
 			MailServiceUtil.sendEmail(mailMessage);
-			System.out.println("Mensaje enviado");
+			log.info("El mensaje se envio correctamente");
 			
-		} catch (AddressException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		}catch (AddressException e) {
+			// TODO: handle exception
+			log.error(e.getStackTrace());
+			log.error(e.getCause());
+			log.error(e.getLocalizedMessage());
+			log.error(e.getMessage());
 		}
 	}
 }
