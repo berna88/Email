@@ -1,3 +1,4 @@
+<%@page import="Email.constants.Contants"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <%@ taglib uri="http://java.sun.com/portlet_2_0" prefix="portlet" %>
@@ -41,28 +42,28 @@ form > div[class=contenedor] > div > textarea{
 		<aui:form action="${sendMailURL}" method="POST">
 			<div class="contenedor">
 				<label class="labelm">Nombre:</label>
-				<aui:input class="ancho" name="Nombre" type="text" />
+				<aui:input class="ancho" name="<%=Contants.NOMBRE %>" type="text" />
 			</div>
 			<div class="contenedor">
 				<label class="labelm">Telefono:</label>
-				<aui:input class="ancho" name="Telefono" type="number"  />
+				<aui:input class="ancho" name="<%=Contants.TELEFONO %>" type="number"  />
 			</div>
 			<div class="contenedor">
 				<label class="labelm">Correo:</label>
-				<aui:input class="ancho" name="Correo" type="email"  />
+				<aui:input class="ancho" name="<%=Contants.CORREO %>" type="email"  />
 			</div>
 			<div class="contenedor">
 				<label class="labelm">Comentario:</label>
-				<aui:input class="ancho" name="Comentario" type="text"  />
+				<aui:input class="ancho" name="<%=Contants.COMENTARIOS %>" type="text"  />
 			</div>
 			<div class="contenedor">
 				<label class="labelm">En que horario te podemos cantactar:</label>
-				<aui:input class="ancho" type="datetime-local" name="bdaytime"  />
+				<aui:input class="ancho" type="datetime-local" name="<%=Contants.HORARIO %>"  />
 			</div>
 			<div class="contenedor">
-				<aui:input class="ancho" id="produc" name="producto" type="textarea"  style="visibility: hidden;"  />
+				<aui:input class="ancho" id="produc" name="<%=Contants.PRODUCTO %>" type="textarea"  style="visibility: hidden;"  />
 			</div>
-			<aui:button type="submit" onclick="myFunction()" value="Enviar" />
+			<aui:button type="submit" value="Enviar" />
 		</aui:form>
 		</div>
 	</div>
@@ -73,7 +74,4 @@ var prod = document.getElementById("producto").innerText;
 AUI().use('node', function(A){
    A.one('#<portlet:namespace/>produc').set('value',prod); 
  });
- function myFunction() {
-  document.getElementById("myForm").reset();
-}
 </aui:script>

@@ -54,6 +54,12 @@
 			<version>6.0.0</version>
 			<scope>provided</scope>
 		</dependency>
+		<dependency>
+    		<groupId>mx.com.multiva.solicitudservicio.api</groupId>
+    		<artifactId>solicitudservicio.api</artifactId>
+    		<version>1.0.0</version>
+    		<scope>provided</scope>
+		</dependency>
 	</dependencies>
 	<build>
 		<plugins>
