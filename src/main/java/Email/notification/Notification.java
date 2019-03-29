@@ -31,7 +31,7 @@ public class Notification extends BaseUserNotificationHandler{
 		// TODO Auto-generated method stub
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject(userNotificationEvent.getPayload());
 		String notificationText = jsonObject.getString("notificationText");
-		String title = jsonObject.getString("title");
+		String title = jsonObject.getString("titulo");
 		String senderName = jsonObject.getString("senderName");
 		String body = StringUtil.replace(getBodyTemplate(), 
 				new String[] { "{$TITLE$}", "[$SENDERNAME$]", "[$BODY_TEXT$]" }, 

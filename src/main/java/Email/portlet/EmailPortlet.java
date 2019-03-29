@@ -101,7 +101,7 @@ public class EmailPortlet extends MVCPortlet {
 		
 			JSONObject payloadJSON =JSONFactoryUtil.createJSONObject();
 			payloadJSON.put("userId", portal.getUserId());
-			payloadJSON.put("title", asunto);
+			payloadJSON.put("titulo", asunto);
 			payloadJSON.put("senderName",remitente);
 			payloadJSON.put("notificationText",contenido);
 			_userNotificationEventLocalService.addUserNotificationEvent(portal.getUserId(),

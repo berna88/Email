@@ -45,7 +45,7 @@ form > div[class=contenedor] > div > textarea{
 				<aui:input class="ancho" name="<%=Contants.NOMBRE %>" type="text" />
 			</div>
 			<div class="contenedor">
-				<label class="labelm">Telefono:</label>
+				<label class="labelm">Teléfono:</label>
 				<aui:input class="ancho" name="<%=Contants.TELEFONO %>" type="number"  />
 			</div>
 			<div class="contenedor">
@@ -57,7 +57,7 @@ form > div[class=contenedor] > div > textarea{
 				<aui:input class="ancho" name="<%=Contants.COMENTARIOS %>" type="text"  />
 			</div>
 			<div class="contenedor">
-				<label class="labelm">En que horario te podemos cantactar:</label>
+				<label class="labelm">En que horario te podemos contactar:</label>
 				<aui:input class="ancho" type="datetime-local" name="<%=Contants.HORARIO %>"  />
 			</div>
 			<div class="contenedor">
