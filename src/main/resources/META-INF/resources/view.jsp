@@ -30,6 +30,27 @@ form > div[class=contenedor] > div > input{
 form > div[class=contenedor] > div > textarea{
 	width: 100%;
 }
+
+form > div[class=correoMultiva] > button{
+	padding: 1rem;width: 14rem;display: block;margin-left: auto;
+}
+form > div[class=correoMultiva]{
+	width: 70%;
+}
+.labelm{
+	color:#242424 !important;
+	font-weight: 400 !important;
+}
+
+
+@media only screen and (max-width: 991px) {
+  form > div[class=contenedor] > div > input{
+	width: 100% !important;
+	}
+	form > div[class=correoMultiva]{
+	width: 100%;
+}
+}
 </style>
 
 <div class="container">
@@ -63,7 +84,9 @@ form > div[class=contenedor] > div > textarea{
 			<div class="contenedor">
 				<aui:input class="ancho" id="produc" name="<%=Contants.PRODUCTO %>" type="textarea"  style="visibility: hidden;"  />
 			</div>
-			<aui:button type="submit" value="Enviar" />
+			<div class="correoMultiva">
+			<aui:button  type="submit" value="Enviar" />
+			</div>
 		</aui:form>
 		</div>
 	</div>
