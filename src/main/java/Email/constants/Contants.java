@@ -1,7 +1,7 @@
 package Email.constants;
 
 /**
- * @author liferay
+ * @author Bernardo Hernandez Ramirez
  */
 public class Contants {
 	/**

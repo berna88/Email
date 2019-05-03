@@ -1,6 +1,5 @@
 package Email.portlet;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -17,24 +16,14 @@ import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.Company;
-import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.model.Role;
-import com.liferay.portal.kernel.model.RoleConstants;
-import com.liferay.portal.kernel.model.User;
-import com.liferay.portal.kernel.model.UserGroupRole;
 import com.liferay.portal.kernel.model.UserNotificationDeliveryConstants;
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCPortlet;
 import com.liferay.portal.kernel.service.CompanyLocalServiceUtil;
 import com.liferay.portal.kernel.service.RoleLocalServiceUtil;
-import com.liferay.portal.kernel.service.RoleServiceUtil;
-import com.liferay.portal.kernel.service.ServiceContext;
-import com.liferay.portal.kernel.service.UserGroupRoleLocalServiceUtil;
 import com.liferay.portal.kernel.service.UserLocalServiceUtil;
 import com.liferay.portal.kernel.service.UserNotificationEventLocalService;
-import com.liferay.portal.kernel.service.UserServiceUtil;
-import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.ParamUtil;
-import com.liferay.portal.kernel.util.WebKeys;
 
 import Email.configuration.Portal;
 import Email.constants.Contants;
@@ -113,29 +102,6 @@ public class EmailPortlet extends MVCPortlet {
 		    		                        false,
 		    		                        portal.getServiceContext());
 			
-			/*Role role = RoleLocalServiceUtil.getRole(portal.getThemeDisplay().getCompanyId(), "CallCenter");
-			
-			List<Long> roleIds = new ArrayList<>();
-			roleIds.add(role.getRoleId());
-			
-			for (Long long1 : roleIds) {
-				List<User> us = UserLocalServiceUtil.getRoleUsers(long1);
-			}*/
-			
-			
-			
-			 List<Company> companies=CompanyLocalServiceUtil.getCompanies();
-	            for(Company company:companies)
-	            {
-	                List<Role> roles=RoleLocalServiceUtil.getRoles(company.getCompanyId());
-	                for(Role role:roles)
-	                {
-	                	if(role.getName().equals("CallCenter")){
-	                		System.out.println("Usuarios: "+UserLocalServiceUtil.getUser(role.getUserId()));
-		                    System.out.println(role.getRoleId()+" "+role.getName());
-	                	}
-	                }
-	            }
 		}catch (NullPointerException e) {
 			// TODO: handle exception
 			
