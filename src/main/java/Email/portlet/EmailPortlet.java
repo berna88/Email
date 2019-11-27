@@ -1,7 +1,16 @@
 package Email.portlet;
 
+import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.json.JSONFactoryUtil;
+import com.liferay.portal.kernel.json.JSONObject;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.model.UserNotificationDeliveryConstants;
+import com.liferay.portal.kernel.portlet.bridges.mvc.MVCPortlet;
+import com.liferay.portal.kernel.service.UserNotificationEventLocalService;
+import com.liferay.portal.kernel.util.ParamUtil;
+
 import java.util.Date;
-import java.util.List;
 
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
@@ -9,21 +18,6 @@ import javax.portlet.Portlet;
 
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
-
-import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.json.JSONFactoryUtil;
-import com.liferay.portal.kernel.json.JSONObject;
-import com.liferay.portal.kernel.log.Log;
-import com.liferay.portal.kernel.log.LogFactoryUtil;
-import com.liferay.portal.kernel.model.Company;
-import com.liferay.portal.kernel.model.Role;
-import com.liferay.portal.kernel.model.UserNotificationDeliveryConstants;
-import com.liferay.portal.kernel.portlet.bridges.mvc.MVCPortlet;
-import com.liferay.portal.kernel.service.CompanyLocalServiceUtil;
-import com.liferay.portal.kernel.service.RoleLocalServiceUtil;
-import com.liferay.portal.kernel.service.UserLocalServiceUtil;
-import com.liferay.portal.kernel.service.UserNotificationEventLocalService;
-import com.liferay.portal.kernel.util.ParamUtil;
 
 import Email.configuration.Portal;
 import Email.constants.Contants;
@@ -73,14 +67,21 @@ public class EmailPortlet extends MVCPortlet {
 			
 			String correoDestino = destino;
 			String destinatario = correoDestino;
+			log.info(destinatario);
 			String remitente = (!ParamUtil.getString(request, Contants.CORREO).isEmpty())?ParamUtil.getString(request, Contants.CORREO):"test@liferay.com";
+			log.info(remitente);
 			String nombre = (!ParamUtil.getString(request, Contants.NOMBRE).isEmpty())?ParamUtil.getString(request, Contants.NOMBRE):"Sin nombre";
+			log.info(nombre);
 			String asunto = Contants.ASUNTO;
+			log.info(asunto);
 			String contenido = (!ParamUtil.getString(request, Contants.COMENTARIOS).isEmpty())?ParamUtil.getString(request, Contants.COMENTARIOS):"test";
+			log.info(contenido);
 			String producto = (!ParamUtil.getString(request, Contants.PRODUCTO).isEmpty())?ParamUtil.getString(request, Contants.PRODUCTO):"Sin producto";
+			log.info(producto);
 			String hora = (!ParamUtil.getString(request, Contants.HORARIO).isEmpty())?ParamUtil.getString(request, Contants.HORARIO):"Sin hora";
+			log.info(hora);
 			String telefono = (!ParamUtil.getString(request, Contants.TELEFONO).isEmpty())?ParamUtil.getString(request, Contants.TELEFONO):"Sin telefono";
-			
+			log.info(telefono);
 			Contacto contacto = new Contacto(remitente, destinatario, nombre, asunto, contenido, producto, hora, telefono);
 			//Metodo que envia a correo
 			contacto.enviarCorreo();
